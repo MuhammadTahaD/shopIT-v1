@@ -5,19 +5,29 @@ import ErrorHandler from "../utils/ErrorHandler.js";
 
 // Get all products => /api/v1/products
 export const getProducts = catchAsyncErrors(async (req, res, next) => {
-  const resPerPage = 4;
+  const requestedLimit = Number(req.query.limit);
+  const resPerPage = Number.isInteger(requestedLimit) && requestedLimit > 0
+    ? Math.min(requestedLimit, 48)
+    : 12;
+  const requestedPage = Number(req.query.page);
+  const currentPage = Number.isInteger(requestedPage) && requestedPage > 0
+    ? requestedPage
+    : 1;
   const apiFilters = new APIFilters(Product, req.query).search().filters();
+  const filteredQuery = apiFilters.query.getFilter();
 
-  let products = await apiFilters.query;
-  const filteredProductsCount = products.length;
-
-  apiFilters.pagination(resPerPage);
-  products = await apiFilters.query.clone();
+  apiFilters.sort().pagination(resPerPage, currentPage);
+  const [products, filteredProductsCount] = await Promise.all([
+    apiFilters.query,
+    Product.countDocuments(filteredQuery),
+  ]);
 
   res.status(200).json({
     success: true,
     resPerPage,
     filteredProductsCount,
+    totalPages: Math.ceil(filteredProductsCount / resPerPage),
+    currentPage,
     products,
   });
 });

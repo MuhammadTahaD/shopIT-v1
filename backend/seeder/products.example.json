@@ -1,0 +1,50 @@
+[
+  {
+    "sku": "shopit-reuse-001",
+    "name": "Nalgene Sustain Wide Mouth Bottle, 32 oz",
+    "price": 16.99,
+    "description": "A durable, reusable 32 oz bottle made with material derived from 50% plastic waste through ISCC certified mass balance.",
+    "ratings": 0,
+    "images": [
+      {
+        "public_id": "amazon-B09LMRDB4Y",
+        "url": "https://m.media-amazon.com/images/I/61TT1HgXuBL._AC_SL1500_.jpg"
+      }
+    ],
+    "category": "Outdoor",
+    "seller": "Nalgene",
+    "stock": 18
+  },
+  {
+    "sku": "shopit-reuse-002",
+    "name": "Virgin Forest Bamboo Toothbrushes, 10 Pack",
+    "price": 8.99,
+    "description": "Ten soft-bristle toothbrushes with bamboo handles. Let the handles dry between uses.",
+    "ratings": 0,
+    "images": [
+      {
+        "public_id": "amazon-B083TZR58L",
+        "url": "https://m.media-amazon.com/images/I/41imW-C8PFL.jpg"
+      }
+    ],
+    "category": "Home",
+    "seller": "Virgin Forest",
+    "stock": 24
+  },
+  {
+    "sku": "shopit-reuse-003",
+    "name": "Bee's Wrap Reusable Beeswax Food Wraps, 3 Pack",
+    "price": 18.99,
+    "description": "Three reusable beeswax wraps in small, medium, and large sizes for covering produce, cheese, and bowls.",
+    "ratings": 0,
+    "images": [
+      {
+        "public_id": "amazon-B0126LMDFK",
+        "url": "https://m.media-amazon.com/images/I/51nw0nI2SZL._AC_SL1500_.jpg"
+      }
+    ],
+    "category": "Home",
+    "seller": "Bee's Wrap",
+    "stock": 12
+  }
+]

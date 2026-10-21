@@ -1,5 +1,6 @@
 export default [
   {
+    sku: "shopit-demo-001",
     name: "SanDisk Ultra 128GB SDXC UHS-I Memory Card up to 80MB/s",
     price: 45.89,
     description:
@@ -26,6 +27,7 @@ export default [
     reviews: [],
   },
   {
+    sku: "shopit-demo-002",
     name: "CAN USB FD Adapter (GC-CAN-USB-FD)",
     price: 315,
     description:
@@ -56,6 +58,7 @@ export default [
     reviews: [],
   },
   {
+    sku: "shopit-demo-003",
     name: "CHARMOUNT Full Motion TV Wall Mount Swivel",
     price: 26.99,
     description:
@@ -78,6 +81,7 @@ export default [
     reviews: [],
   },
   {
+    sku: "shopit-demo-004",
     name: "Bose QuietComfort 35 II Wireless Bluetooth Headphones",
     price: 299,
     description:
@@ -100,6 +104,7 @@ export default [
     reviews: [],
   },
   {
+    sku: "shopit-demo-005",
     name: "Apple AirPods with Charging Case (Wired)",
     price: 126.99,
     description:
@@ -126,6 +131,7 @@ export default [
     reviews: [],
   },
   {
+    sku: "shopit-demo-006",
     name: "Cable Boom Microphone - Volume Control for Playstation PS4 or Xbox",
     price: 27.99,
     description:
@@ -144,6 +150,7 @@ export default [
     reviews: [],
   },
   {
+    sku: "shopit-demo-007",
     name: "Nikon D3500 W/ AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR Black",
     price: 496.95,
     description:
@@ -170,6 +177,7 @@ export default [
     reviews: [],
   },
   {
+    sku: "shopit-demo-008",
     name: "Apple MacBook Air (13-inch, 8GB RAM, 256GB SSD Storage) - Space Gray",
     price: 949.99,
     description:
@@ -196,6 +204,7 @@ export default [
     reviews: [],
   },
   {
+    sku: "shopit-demo-009",
     name: "Kauffman Orchards Homegrown McIntosh Apples",
     price: 2.75,
     description:

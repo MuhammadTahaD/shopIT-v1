@@ -23,11 +23,23 @@ try {
   }
 
   for (const item of sustainableCatalog) {
-    const { asin, image, amazonUrl, ...fields } = item;
-    await Product.updateOne(
-      { "images.public_id": `amazon-${asin}` },
+    const { asin, image, amazonUrl, sku, ...fields } = item;
+    const legacyProduct = await Product.findOne({
+      sku: { $exists: false },
+      "images.public_id": `amazon-${asin}`,
+    }).select("_id").lean();
+
+    if (legacyProduct) {
+      await Product.updateOne({ _id: legacyProduct._id }, { $set: { sku } });
+      console.log(`Updated catalog SKU: ${fields.name} (${amazonUrl})`);
+      continue;
+    }
+
+    const result = await Product.updateOne(
+      { sku },
       {
         $setOnInsert: {
+          sku,
           ...fields,
           images: [{ public_id: `amazon-${asin}`, url: image }],
           user: admin._id,
@@ -35,7 +47,7 @@ try {
       },
       { upsert: true, runValidators: true },
     );
-    console.log(`Catalog item ready: ${fields.name} (${amazonUrl})`);
+    console.log(`${result.upsertedCount ? "Added" : "Already present"}: ${fields.name} (${amazonUrl})`);
   }
 
   console.log(`Added missing sustainable catalog items; existing items were left untouched.`);

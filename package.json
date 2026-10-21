@@ -8,7 +8,8 @@
     "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/app.js",
     "prod": "SET NODE_ENV=PRODUCTION& nodemon backend/app.js",
     "seeder": "node backend/seeder/seeder.js",
-    "seed:sustainable": "node backend/seeder/seedSustainableCatalog.js"
+    "seed:sustainable": "node backend/seeder/seedSustainableCatalog.js",
+    "import:products": "node backend/seeder/importProducts.js"
   },
   "author": "M taha D",
   "license": "ISC",

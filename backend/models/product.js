@@ -1,6 +1,13 @@
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
+    sku: {
+        type: String,
+        required: [true, "Please enter product SKU"],
+        unique: true,
+        sparse: true,
+        trim: true
+    },
     name: {
         type: String,
         required: [true, "Please enter product name"],
@@ -10,16 +17,17 @@ const productSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: [true, "Please enter product price"],
-        maxLength: [5, "Product price cannot exceed 5 digits"],
+        min: [0, "Product price cannot be negative"],
+        max: [999999.99, "Product price cannot exceed 999999.99"],
         default: 0
     },
     description: {
         type: String,
         required: [true, "Please enter product description"]
     },
-    rating: {
+    ratings: {
         type: Number,
-        required: false,
+        default: 0,
     },
     images: [
         {
@@ -87,5 +95,8 @@ const productSchema = new mongoose.Schema({
         required: true,
     }
 }, { timestamps: true });
+
+productSchema.index({ name: "text", description: "text" });
+productSchema.index({ category: 1, price: 1 });
 
 export default mongoose.model("Product", productSchema);

@@ -37,6 +37,8 @@ The checked-in local config uses port `4000`. The backend API prefix is `/api/v1
 
 To add the curated sustainable demo products without clearing or changing existing products, first create an admin account, review `backend/seeder/sustainableCatalog.js`, then run `npm run seed:sustainable` from the repository root. The script inserts only missing catalog items. Image URLs and suggested prices are examples and should be checked against current supplier listings before launch.
 
+For bulk imports, use a JSON array or CSV file with the fields shown in `backend/seeder/products.example.json`. Every product needs a unique `sku`; `user` is assigned from the first admin account. Validate a file with `npm run import:products -- backend/seeder/products.example.json --dry-run`. Run a real import only against a local throwaway MongoDB database. Existing SKUs are updated only when their product data changes.
+
 ## Frontend setup
 
 ```powershell

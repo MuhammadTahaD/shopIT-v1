@@ -5,10 +5,10 @@ class APIFilters {
   }
 
   search() {
-    const keyword = this.queryStr.keyword
+    const keyword = typeof this.queryStr.keyword === "string" && this.queryStr.keyword.trim()
       ? {
           name: {
-            $regex: this.queryStr.keyword,
+            $regex: this.queryStr.keyword.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
             $options: "i",
           },
         }
@@ -22,7 +22,7 @@ class APIFilters {
     const queryCopy = { ...this.queryStr };
 
     // Fields to remove
-    const fieldsToRemove = ["keyword", "page"];
+    const fieldsToRemove = ["keyword", "page", "limit", "sort"];
     fieldsToRemove.forEach((el) => delete queryCopy[el]);
 
     // Advance filter for price, ratings etc
@@ -33,8 +33,19 @@ class APIFilters {
     return this;
   }
 
-  pagination(resPerPage) {
-    const currentPage = Number(this.queryStr.page) || 1;
+  sort() {
+    const sortOptions = {
+      price: { price: 1 },
+      "-price": { price: -1 },
+      "-createdAt": { createdAt: -1 },
+      "-ratings": { ratings: -1 },
+    };
+
+    this.query = this.query.sort(sortOptions[this.queryStr.sort] || sortOptions["-createdAt"]);
+    return this;
+  }
+
+  pagination(resPerPage, currentPage) {
     const skip = resPerPage * (currentPage - 1);
 
     this.query = this.query.limit(resPerPage).skip(skip);
